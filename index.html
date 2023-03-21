@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+        <div class="tags-slider">
+            <nav class="tags">
+                <button class="tags__btn tags__btn_active line" href="" onclick="getAll()">All</button>
+                <button class="tags__btn" href="" onclick="selectTag('SMB')">SMB</button>
+                <button class="tags__btn  line" onclick="selectTag('Enterprise')">Enterprise</button>
+                <button class="tags__btn" href="" onclick="selectTag('Biotech')">Biotech</button>
+                <button class="tags__btn" href="" onclick="selectTag('Textile Testing & Certification')">Textile Testing & Certification</button>
+                <button class="tags__btn" href="" onclick="selectTag('Insurance')">Insurance</button>
+                <button class="tags__btn" href="" onclick="selectTag('Transport & Logistics')">Transport & Logistics</button>
+                <button class="tags__btn" href="" onclick="selectTag('Information Technology')">Information Technology</button>
+            </nav>
+        </div>
+        <button class="tags-arrow">
+            <svg width="10" height="15" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L15 15L2 28" stroke="#4545F5" stroke-width="3"/>
+            </svg>      
+        </button>   
+        <button class="tags-arrow_left">
+            <svg width="10" height="15" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 28L3 15L16 2" stroke="#4545F5" stroke-width="3"/>
+            </svg>     
+        </button>   
+    </div>
+    </header>
+    <main>
+ 
+   <div class="card-section">
+      <div class="slider">
+      </div>
+   </div>
+   <div class="slider__arrows">
+        <button class="slider__left">
+            <svg class="slider__left-icon" width="18" height="30" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 28L3 15L16 2" stroke="" stroke-width="3"/>
+            </svg>                
+        </button>
+        <div class="slider__counter"><span class="slider__number">1</span><span>of 3</span> </div>
+        <button class="slider__right">
+            <svg width="18" height="30" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L15 15L2 28" stroke="#4545F5" stroke-width="3"/>
+            </svg>                
+        </button>
+    </div>
+   
+</div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
