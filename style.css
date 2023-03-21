@@ -236,8 +236,8 @@ button {
     width: auto;
   }
   .item {
-    width: 350px;
-    flex: 1 0 350px;
+    width: 340px;
+    flex: 1 0 340px;
   }
 }
 @media only screen and (max-width: 426px) {

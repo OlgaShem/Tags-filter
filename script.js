@@ -148,7 +148,7 @@ if (window.screen.width >= 769) {
 
 }
 
-if (window.screen.width >= 768) {
+if (window.screen.width <= 768) {
 
     left.addEventListener('click', scrollLeft);
     function scrollLeft() {
