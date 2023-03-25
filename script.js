@@ -69,48 +69,104 @@ let cards = [
 
 let slideAll = document.querySelector('.slider__number_all');
 let count = document.querySelector(".slider__number");
-console.log(slideAll.textContent)
+let cardTag = document.querySelectorAll('.card__tag');
+let tagBtn = document.querySelectorAll('.tags__btn');
 
 /* cards*/
 function getAll() {
     let wrap = '';
 
     for (let item of cards) {
-        wrap += `<div class="card item">
+        wrap += `
+            <div class="card item">
+            <div class="card__banner" style="background: ${item.color}"></div>
+                <div class="card__content">
+                    <div class="card__container">
+                        <div class="card__tags">
+                            <button class="card__tag card__tag_first" value="${item.tag1}" onclick="selectTag(this.value)">${item.tag1}</button>
+                            <button class="card__tag card__tag_second" value="${item.tag2}" onclick="selectTag(this.value)">${item.tag2}</button>
+                            <p class="card__time"> ${item.time} </p>
+                        </div>
+                    </div>
+                    <h2 class="card__title"> ${item.title} </h2>
+                    <div class="author">
+                        <div class="author__left">
+                            <div class="author__sircle" style="background: ${item.color}"></div>
+                            <div class="author__text">
+                                <p class="author__name">${item.name} </p>
+                                <p class="author__title">${item.subtitle} </p>
+                            </div>
+                        </div>
+                        <a class="author__link" href="">${item.read}</a>
+                    </div>
+                </div>
+        </div>`;
+    }
+    document.querySelector('.slider').innerHTML = wrap;
+    count.innerHTML= "1";
+    slideAll.textContent = "3";
+}
+
+getAll();
+
+/* tag filter*/
+function selectTag(tag) {
+    let wrap = "";
+    cards.forEach((item) => {
+        if (item.tag1 === tag || item.tag2 === tag) {
+            wrap += `<div class="card item">
         <div class="card__banner" style="background: ${item.color}"></div>
             <div class="card__content">
                 <div class="card__container">
                     <div class="card__tags">
                         <button class="card__tag card__tag_first" value="${item.tag1}" onclick="selectTag(this.value)">${item.tag1}</button>
                         <button class="card__tag card__tag_second" value="${item.tag2}" onclick="selectTag(this.value)">${item.tag2}</button>
-                        <p class="card__time"> ${item.time} </p>
+                        <p class="card__time">${item.time}</p>
                     </div>
                 </div>
-                <h2 class="card__title"> ${item.title} </h2>
+                <h2 class="card__title">${item.title}</h2>
+                
                 <div class="author">
                     <div class="author__left">
                         <div class="author__sircle" style="background: ${item.color}"></div>
                         <div class="author__text">
-                            <p class="author__name">${item.name} </p>
-                            <p class="author__title">${item.subtitle} </p>
+                            <p class="author__name">${item.name}</p>
+                            <p class="author__title">${item.subtitle}</p>
                         </div>
                     </div>
                     <a class="author__link" href="">${item.read}</a>
                 </div>
-            </div>
-       </div>`;
-    }
+             </div>
+        </div>`;
+
+        }
+    });
     document.querySelector('.slider').innerHTML = wrap;
-    count.innerHTML= "1";
-    slideAll.textContent = "3"
-    console.log(slideAll.textContent)
+    findNumber();
+    setActive(tag);
+    addTagClass();
 }
 
-getAll();
+function findNumber(){
+   let num= $(".card").length;
+    if (num <=2 ) {
+        let one = '1'
+        console.log("1");
+        slideAll.textContent = "1"
+        count.innerHTML= `<span>${one}</span>`;
+    }
+    else if (num<=4) {
+        console.log("2");
+        slideAll.textContent = "2"
+        count.innerHTML= "1";
+    }
+    else {
+        console.log("3");
+        slideAll.textContent = "3"
+    }
 
-
-let cardTag = document.querySelectorAll('.card__tag');
-let tagBtn = document.querySelectorAll('.tags__btn');
+}
+findNumber()
 
 
 function addTagClass() {
@@ -123,6 +179,7 @@ function addTagClass() {
 }
 addTagClass();
 
+/*Set active class for header category */
 
 for (let i = 0; i < tagBtn.length; i++) {
     tagBtn[i].addEventListener("click", function () {
@@ -132,30 +189,53 @@ for (let i = 0; i < tagBtn.length; i++) {
     });
 }
 
-let line = document.querySelector('.line')
 
-
-for (let i = 0; i < cardTag.length; i++) {
-    cardTag[i].addEventListener("click", function () {
-       if (this.value == "SMB") {
-            console.log (this.value)
-            document.querySelector('.smb').classList.add ('active')
+function setActive(tag) {
+       if (tag == "SMB") {
+        for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.smb').classList.add('active');   
+            }
        }
-       else if (this.value == "Enterprise") {
-        console.log (this.value)
-        document.querySelector('.enterprise').classList.add ('active')
-   }
-   else if (this.value == "Information Technology") {
-    console.log (this.value)
-    document.querySelector('.enterprise').classList.add ('active')
-}
-    });
-}   
+       else if (tag == "Enterprise") {
+        for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.enterprise').classList.add('active');
+        }
+    }
+       else if (tag == "Biotech") {
+        for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.biotech').classList.add('active');
+            }
+        }
+        else if (tag == "Textile Testing & Certification") {
+            for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.textile').classList.add('active');
+            }
+        }
+        else if (tag == "Insurance") {
+            for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.insurance').classList.add('active');
+            }
+        }
+        else if (tag == "Transport & Logistics") {
+            for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.transport').classList.add('active');
+            }
+        }
+        else if (tag == "Information Technology") {
+            for (let i = 0; i < tagBtn.length; i++) {
+            tagBtn[i].classList.remove('active');
+            document.querySelector('.information').classList.add('active');
+            }
+        }
+    }
 
-
-
-
-
+  
 
 /*slider*/
 let left = document.querySelector('.slider__left');
@@ -179,6 +259,31 @@ function countReduce() {
     }
 }
 
+
+
+/* tags slider */
+let tagArrow = document.querySelector(".tags-arrow");
+let tagArrowLeft = document.querySelector(".tags-arrow_left");
+let tagsMenu = document.querySelector(".tags-slider");
+
+tagArrow.addEventListener('click', tagScroll);
+tagArrowLeft.addEventListener('click', tagScrollLeft);
+
+function tagScroll() {
+    tagsMenu.scrollBy({
+        left: 120,
+        behavior: 'smooth'
+    });
+    tagArrowLeft.style.display = "block";
+};
+
+function tagScrollLeft() {
+    tagsMenu.scrollBy({
+        left: -120,
+        behavior: 'smooth'
+    });
+    tagArrowLeft.style.display = "none";
+};
 
 
 
@@ -234,7 +339,7 @@ if (window.screen.width <= 425) {
     left.addEventListener('click', scrollLeft);
     function scrollLeft() {
         cardSection.scrollBy({
-            left: -345,
+            left: -344,
             behavior: 'smooth'
         });
         countReduce()
@@ -245,7 +350,7 @@ if (window.screen.width <= 425) {
 
     function scrollRight() {
         cardSection.scrollBy({
-            left: 345,
+            left: 344,
             behavior: 'smooth'
         });
         countIncrease();
@@ -253,92 +358,16 @@ if (window.screen.width <= 425) {
 
     function tagScrollLeft() {
         tagsMenu.scrollBy({
-            left: -120,
+            left: -750,
             behavior: 'smooth'
         });
     };
 
-}
 
+    let divs = $(".slider > .card");
 
-/* tag filter*/
-function selectTag(tag) {
-    let wrap = "";
-    cards.forEach((item) => {
-        if (item.tag1 === tag || item.tag2 === tag) {
-            wrap += `<div class="card item">
-        <div class="card__banner" style="background: ${item.color}"></div>
-            <div class="card__content">
-                <div class="card__container">
-                    <div class="card__tags">
-                        <button class="card__tag card__tag_first" value="${item.tag1}" onclick="selectTag(this.value)">${item.tag1}</button>
-                        <button class="card__tag card__tag_second" value="${item.tag2}" onclick="selectTag(this.value)">${item.tag2}</button>
-                        <p class="card__time"> ${item.time} </p>
-                    </div>
-                </div>
-                <h2 class="card__title"> ${item.title} </h2>
-                
-                <div class="author">
-                    <div class="author__left">
-                        <div class="author__sircle" style="background: ${item.color}"></div>
-                        <div class="author__text">
-                            <p class="author__name">${item.name} </p>
-                            <p class="author__title">${item.subtitle} </p>
-                        </div>
-                    </div>
-                    <a class="author__link" href="">${item.read}</a>
-                </div>
-             </div>
-        </div>`;
-
-        }
-    });
-    document.querySelector('.slider').innerHTML = wrap;
-    findNumber();
-    
-
-}
-function findNumber(){
-   let num= $(".card").length;
-    if (num <=2 ) {
-        let one = '1'
-        console.log("1");
-        slideAll.textContent = "1"
-        count.innerHTML= `<span>${one}</span>`;
-    }
-    else if (num<=4) {
-        console.log("2");
-        slideAll.textContent = "2"
-        count.innerHTML= "1";
-    }
-    else {
-        console.log("3");
-        slideAll.textContent = "3"
+    for (let i = 0; i < divs.length; i += 2) {
+    divs.slice(i, i + 2).wrapAll("<div class='block'></div>");
     }
 
-
 }
-findNumber()
-/* tags slider */
-let tagArrow = document.querySelector(".tags-arrow");
-let tagArrowLeft = document.querySelector(".tags-arrow_left");
-let tagsMenu = document.querySelector(".tags-slider");
-
-tagArrow.addEventListener('click', tagScroll);
-tagArrowLeft.addEventListener('click', tagScrollLeft);
-
-function tagScroll() {
-    tagsMenu.scrollBy({
-        left: 120,
-        behavior: 'smooth'
-    });
-    tagArrowLeft.style.display = "block";
-};
-
-function tagScrollLeft() {
-    tagsMenu.scrollBy({
-        left: -120,
-        behavior: 'smooth'
-    });
-    tagArrowLeft.style.display = "none";
-};

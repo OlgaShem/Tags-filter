@@ -75,13 +75,13 @@ button {
 .tags-arrow_left {
   display: none;
   position: absolute;
-  top: 1px;
+  top: 6px;
   right: 18px;
   z-index: 2;
 }
 
 .card {
-  max-width: 526px;
+  max-width: 520px;
   margin-right: 25px;
   border: 1.5px solid #EEF0F6;
   border-radius: 8px;
@@ -107,12 +107,20 @@ button {
   letter-spacing: 0.3px;
 }
 .card__tag_first {
-  background: #E1F6E9;
+  background: #CDF1DA;
   color: #00A338;
+  opacity: 0.8;
+}
+.card__tag_first:hover {
+  opacity: 1;
 }
 .card__tag_second {
-  background: #E3E3FE;
+  background: #D0D0FD;
+  opacity: 0.8;
   color: #4545F5;
+}
+.card__tag_second:hover {
+  opacity: 1;
 }
 .card__time {
   color: #B3B7C7;
@@ -216,6 +224,10 @@ button {
   color: #4545F5;
 }
 
+.selected {
+  opacity: 1;
+}
+
 .item {
   width: 526px;
   flex: 1 0 526px;
@@ -266,7 +278,11 @@ button {
 }
 @media only screen and (max-width: 426px) {
   .card {
-    width: 320px;
+    width: 318px;
+    margin-bottom: 35px;
+  }
+  .card:last-child {
+    margin-right: 0;
   }
   .card__title {
     font-size: 18px;
@@ -304,15 +320,14 @@ button {
     min-height: 475px;
   }
   .item {
-    width: 320px;
-    flex: 1 0 318px;
+    flex: 1 0 322px;
   }
   .slider {
     margin: 0;
   }
   .slider__arrows {
     width: 325px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
   }
   .container {
     margin-top: 60px;
@@ -334,6 +349,10 @@ button {
   }
   .tags-arrow {
     right: 25px;
+  }
+  .tags-arrow_left {
+    top: 6px;
+    right: 40px;
   }
   .tags .line::after {
     margin-left: 28px;

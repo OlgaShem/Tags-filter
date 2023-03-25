@@ -77,7 +77,7 @@ button {
       &_left {
          display: none;
          position: absolute;
-         top: 1px;
+         top: 6px;
          right: 18px;
          z-index: 2;
       }
@@ -85,7 +85,7 @@ button {
 }
 
  .card {
-   max-width: 526px;
+   max-width: 520px;
    margin-right: 25px;
    border: 1.5px solid #EEF0F6;
    border-radius: 8px;
@@ -109,12 +109,20 @@ button {
       margin-right: 8px;
       letter-spacing: 0.3px;
       &_first {
-         background: #E1F6E9;
+         background: #CDF1DA;
          color: #00A338;
+         opacity: 0.8;
+         &:hover {
+            opacity: 1;
+         }
       }
       &_second {
-         background: #E3E3FE;
+         background: #D0D0FD;
+         opacity: 0.8;
          color: #4545F5;
+         &:hover {
+            opacity: 1;
+         }
       }
    }
    &__time {
@@ -217,6 +225,9 @@ button {
  .active {
    color: #4545F5;
  }
+ .selected {
+   opacity: 1;
+ }
  .item {
     width: 526px;
     flex: 1 0 526px;
@@ -266,7 +277,11 @@ button {
 
  @media only screen and (max-width: 426px) { 
     .card {
-      width: 320px;
+      width: 318px;
+      margin-bottom: 35px;
+      &:last-child {
+         margin-right: 0;
+      }
       &__title {
          font-size: 18px;
          height: 90px;
@@ -304,18 +319,18 @@ button {
       min-height: 475px;
    }
    .item {
-      width: 320px;
-      flex: 1 0 318px;
+      flex: 1 0 322px;
    }
    .slider {
       margin: 0;
       &__arrows {
          width: 325px;
-         margin: 0 auto;
+         margin: 0 auto 60px;
       }
    }
    .container {
       margin-top: 60px;
+
       &::after {
          width: 60px;
          right: -5px;
@@ -335,6 +350,10 @@ button {
       }
       &-arrow {
          right: 25px;
+         &_left {
+            top: 6px;
+            right: 40px;
+         }
       }
       .line {
          &::after {
