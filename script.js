@@ -67,12 +67,16 @@ let cards = [
     },
 ]
 
+let slideAll = document.querySelector('.slider__number_all');
+let count = document.querySelector(".slider__number");
+console.log(slideAll.textContent)
+
 /* cards*/
 function getAll() {
-   let wrap = '';
-   
+    let wrap = '';
+
     for (let item of cards) {
-       wrap +=`<div class="card item">
+        wrap += `<div class="card item">
         <div class="card__banner" style="background: ${item.color}"></div>
             <div class="card__content">
                 <div class="card__container">
@@ -97,23 +101,75 @@ function getAll() {
        </div>`;
     }
     document.querySelector('.slider').innerHTML = wrap;
-  
+    count.innerHTML= "1";
+    slideAll.textContent = "3"
+    console.log(slideAll.textContent)
 }
 
 getAll();
 
 
+let cardTag = document.querySelectorAll('.card__tag');
+let tagBtn = document.querySelectorAll('.tags__btn');
+
+
+function addTagClass() {
+
+    for (let i = 0; i < cardTag.length; i++) {
+        if (cardTag[i].value == "Enterprise") {
+            cardTag[i].classList.add("blue");
+        }
+    }
+}
+addTagClass();
+
+
+for (let i = 0; i < tagBtn.length; i++) {
+    tagBtn[i].addEventListener("click", function () {
+        let current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+}
+
+let line = document.querySelector('.line')
+
+
+for (let i = 0; i < cardTag.length; i++) {
+    cardTag[i].addEventListener("click", function () {
+       if (this.value == "SMB") {
+            console.log (this.value)
+            document.querySelector('.smb').classList.add ('active')
+       }
+       else if (this.value == "Enterprise") {
+        console.log (this.value)
+        document.querySelector('.enterprise').classList.add ('active')
+   }
+   else if (this.value == "Information Technology") {
+    console.log (this.value)
+    document.querySelector('.enterprise').classList.add ('active')
+}
+    });
+}   
+
+
+
+
+
 
 /*slider*/
-var left = document.querySelector('.slider__left');
-var right = document.querySelector('.slider__right');
-var cardSection = document.querySelector('.card-section');
+let left = document.querySelector('.slider__left');
+let right = document.querySelector('.slider__right');
+let cardSection = document.querySelector('.card-section');
+
 
 function countIncrease() {
     let countPlus = count.innerHTML;
-    if(+countPlus <= 2){
+    findNumber()
+    if (+countPlus <= 2){
       count.innerHTML++;
-    }
+    
+    }   
 }
 
 function countReduce() {
@@ -123,27 +179,29 @@ function countReduce() {
     }
 }
 
-let count = document.querySelector(".slider__number");
 
+
+
+/*mobile*/
 if (window.screen.width >= 769) {
 
     left.addEventListener('click', scrollLeft);
     function scrollLeft() {
         cardSection.scrollBy({
-        left: -1100,
-        behavior: 'smooth'
-    });
-    countReduce()
+            left: -1100,
+            behavior: 'smooth'
+        });
+        countReduce()
     };
 
     right.addEventListener('click', scrollRight);
 
     function scrollRight() {
         cardSection.scrollBy({
-        left: 1100,
-        behavior: 'smooth'
-    });
-    countIncrease();
+            left: 1100,
+            behavior: 'smooth'
+        });
+        countIncrease();
     };
 
 }
@@ -153,22 +211,22 @@ if (window.screen.width <= 768) {
     left.addEventListener('click', scrollLeft);
     function scrollLeft() {
         cardSection.scrollBy({
-          left: -750,
-          behavior: 'smooth'
-       });
-       countReduce()
+            left: -750,
+            behavior: 'smooth'
+        });
+        countReduce()
     };
-    
+
     right.addEventListener('click', scrollRight);
-    
+
     function scrollRight() {
         cardSection.scrollBy({
-          left: 750,
-          behavior: 'smooth'
-       });
-       countIncrease();
+            left: 750,
+            behavior: 'smooth'
+        });
+        countIncrease();
     };
-    
+
 }
 
 
@@ -176,30 +234,30 @@ if (window.screen.width <= 425) {
     left.addEventListener('click', scrollLeft);
     function scrollLeft() {
         cardSection.scrollBy({
-          left: -345,
-          behavior: 'smooth'
-       });
-       countReduce()
+            left: -345,
+            behavior: 'smooth'
+        });
+        countReduce()
     };
-    
+
     right.addEventListener('click', scrollRight);
-    
-    
+
+
     function scrollRight() {
         cardSection.scrollBy({
-          left: 345,
-          behavior: 'smooth'
-       });
-       countIncrease();
+            left: 345,
+            behavior: 'smooth'
+        });
+        countIncrease();
     };
-    
+
     function tagScrollLeft() {
         tagsMenu.scrollBy({
-          left: -120,
-          behavior: 'smooth'
-       });
+            left: -120,
+            behavior: 'smooth'
+        });
     };
- 
+
 }
 
 
@@ -207,8 +265,8 @@ if (window.screen.width <= 425) {
 function selectTag(tag) {
     let wrap = "";
     cards.forEach((item) => {
-      if (item.tag1 === tag || item.tag2 === tag) {
-        wrap +=`<div class="card item">
+        if (item.tag1 === tag || item.tag2 === tag) {
+            wrap += `<div class="card item">
         <div class="card__banner" style="background: ${item.color}"></div>
             <div class="card__content">
                 <div class="card__container">
@@ -232,11 +290,35 @@ function selectTag(tag) {
                 </div>
              </div>
         </div>`;
-      }
-    });
-   document.querySelector('.slider').innerHTML = wrap;
-}
 
+        }
+    });
+    document.querySelector('.slider').innerHTML = wrap;
+    findNumber();
+    
+
+}
+function findNumber(){
+   let num= $(".card").length;
+    if (num <=2 ) {
+        let one = '1'
+        console.log("1");
+        slideAll.textContent = "1"
+        count.innerHTML= `<span>${one}</span>`;
+    }
+    else if (num<=4) {
+        console.log("2");
+        slideAll.textContent = "2"
+        count.innerHTML= "1";
+    }
+    else {
+        console.log("3");
+        slideAll.textContent = "3"
+    }
+
+
+}
+findNumber()
 /* tags slider */
 let tagArrow = document.querySelector(".tags-arrow");
 let tagArrowLeft = document.querySelector(".tags-arrow_left");
@@ -244,19 +326,19 @@ let tagsMenu = document.querySelector(".tags-slider");
 
 tagArrow.addEventListener('click', tagScroll);
 tagArrowLeft.addEventListener('click', tagScrollLeft);
-    
+
 function tagScroll() {
     tagsMenu.scrollBy({
-      left: 120,
-      behavior: 'smooth'
-   });
-   tagArrowLeft.style.display ="block";
+        left: 120,
+        behavior: 'smooth'
+    });
+    tagArrowLeft.style.display = "block";
 };
 
 function tagScrollLeft() {
     tagsMenu.scrollBy({
-      left: -120,
-      behavior: 'smooth'
-   });
-   tagArrowLeft.style.display ="none";
+        left: -120,
+        behavior: 'smooth'
+    });
+    tagArrowLeft.style.display = "none";
 };

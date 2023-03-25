@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@200&display=swap");
 body {
   font-family: "Inter";
+  margin: 0;
+  padding: 0;
 }
 
 .container {
   position: relative;
   max-width: 1080px;
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: 120px;
 }
 .container::after {
   content: "";
@@ -47,26 +49,26 @@ button {
 .tags__btn {
   text-decoration: none;
   margin-right: 20px;
+  font-weight: 500;
   font-size: 16px;
+  line-height: 24px;
   color: #676F8F;
+  margin-left: -3px;
+  letter-spacing: 0.3px;
 }
 .tags__btn:hover {
   color: #4545F5;
 }
-.tags__btn_active {
-  color: #4545F5;
-  font-weight: 600;
-}
 .tags .line::after {
   content: "|";
   color: #D9DBE3;
-  font-size: 16px;
-  margin-left: 28px;
+  font-size: 22px;
+  margin-left: 21px;
   bottom: 3px;
 }
 .tags-arrow {
   position: absolute;
-  top: 1px;
+  top: 6px;
   right: 0;
   z-index: 2;
 }
@@ -86,7 +88,7 @@ button {
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 }
 .card__content {
-  padding: 24px 32px 32px;
+  padding: 24px 32px 0;
 }
 .card__banner {
   height: 244px;
@@ -100,8 +102,9 @@ button {
   border-radius: 20px;
   padding: 0 12px;
   font-size: 14px;
-  height: 25px;
-  margin-right: 5px;
+  height: 28px;
+  margin-right: 8px;
+  letter-spacing: 0.3px;
 }
 .card__tag_first {
   background: #E1F6E9;
@@ -117,8 +120,10 @@ button {
   font-weight: 500;
 }
 .card__title {
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
+  margin-top: 0;
 }
 
 .author {
@@ -128,6 +133,7 @@ button {
 }
 .author__left {
   display: flex;
+  margin-top: 10px;
 }
 .author__text {
   font-size: 16px;
@@ -149,6 +155,7 @@ button {
   font-size: 16px;
   text-decoration: none;
   position: relative;
+  margin: 33px 18px 0 0;
 }
 .author__link::after {
   content: "";
@@ -171,7 +178,7 @@ button {
   -ms-overflow-style: none;
   scrollbar-width: none;
   margin-top: 33px;
-  min-height: 540px;
+  min-height: 524px;
 }
 
 .card-section::-webkit-scrollbar {
@@ -183,25 +190,30 @@ button {
   display: flex;
 }
 .slider__arrows {
-  width: 300px;
+  width: 330px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
   align-items: center;
 }
 .slider__counter {
   color: #B3B7C7;
   font-size: 14px;
 }
-.slider__number {
-  margin-right: 5px;
-}
 .slider__left {
   stroke: #C7C8D4;
 }
 .slider__left-icon:hover {
   stroke: #4545F5;
+}
+
+.blue {
+  background: #E4F8FF;
+  color: #00A3DE;
+}
+
+.active {
+  color: #4545F5;
 }
 
 .item {
@@ -232,12 +244,24 @@ button {
 }
 
 @media only screen and (max-width: 768px) {
+  .tags-slider {
+    max-width: 740px;
+  }
+  .tags-arrow {
+    right: 12px;
+  }
   .card-section {
     width: auto;
   }
   .item {
-    width: 340px;
-    flex: 1 0 340px;
+    width: 345px;
+    flex: 1 0 345px;
+  }
+  .slider {
+    margin: 0 20px;
+  }
+  .slider__arrows {
+    margin-top: 20px;
   }
 }
 @media only screen and (max-width: 426px) {
@@ -246,6 +270,13 @@ button {
   }
   .card__title {
     font-size: 18px;
+    height: 90px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow-y: hidden;
+    margin: 3px 0 0;
   }
   .card__tags {
     overflow: scroll;
@@ -255,17 +286,33 @@ button {
     overflow: scroll;
   }
   .card__content {
-    padding: 20px 20px 0 20px;
+    padding: 17px 20px 20px 20px;
+  }
+  .card__banner {
+    height: 160px;
+  }
+  .card__tag {
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .card__time {
+    white-space: nowrap;
   }
   .card-section {
     width: 320px;
+    margin-top: 26px;
+    min-height: 475px;
   }
   .item {
     width: 320px;
     flex: 1 0 318px;
   }
+  .slider {
+    margin: 0;
+  }
   .slider__arrows {
-    width: 320px;
+    width: 325px;
+    margin: 0 auto;
   }
   .container {
     margin-top: 60px;
@@ -277,16 +324,43 @@ button {
     filter: blur(4px);
   }
   .tags__btn {
-    margin-right: 8px;
+    margin-right: 14px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .tags-slider {
+    margin: 0 20px;
+  }
+  .tags-arrow {
+    right: 25px;
+  }
+  .tags .line::after {
+    margin-left: 28px;
+  }
+  .active {
+    font-weight: 600;
   }
   .author {
     flex-direction: column;
     align-items: flex-start;
   }
   .author__link {
-    padding-top: 24px;
+    margin: 0;
+    padding-top: 18px;
   }
   .author__link::after {
-    top: 28px;
+    top: 21px;
+  }
+  .author__left {
+    margin-top: 0;
+    align-items: center;
+  }
+  .author__sircle {
+    height: 48px;
+    width: 48px;
+  }
+  .author__text {
+    margin-left: 5px;
   }
 }/*# sourceMappingURL=style.css.map */
